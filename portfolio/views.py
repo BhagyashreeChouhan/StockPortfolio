@@ -440,6 +440,7 @@ class TopMoversView(APIView):
                 end_price=Subquery(end_price)
             )
             .exclude(start_price__isnull=True)
+            .exclude(start_price=0)
             .exclude(end_price__isnull=True)
             .annotate(
                 percentage_change=ExpressionWrapper(
